@@ -109,8 +109,8 @@ Resources:
               - target/flink-connector-kinesis_${FlinkScalaVersion}-${FlinkVersion}.pom.xml
             base-directory: flink-release-${FlinkVersion}/flink-connectors/flink-connector-kinesis
             discard-paths: yes
-      TimeoutInMinutes: 5
-
+      TimeoutInMinutes: 7
+      # code build / build history, 5min 51s ; timeout 
 
   DownloadSources:
     Type: Custom::DownloadSources
