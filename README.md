@@ -1,10 +1,18 @@
+
+## Update
+
+* Move the stack to local
+  --Add action to sync to S3 (racheliurui.github.amazon-kinesis-analytics-taxi-consumer)
+
+* Update Elasticsearch definition
+
 ## Amazon Kinesis Analytics Taxi Consumer
 
 Sample Apache Flink application that can be deployed to Kinesis Analytics for Java. It reads taxi events from a Kinesis data stream, processes and aggregates them, and ingests the result to an Amazon Elasticsearch Service cluster for visualization with Kibana.
 
 To see the sample application in action, simply execute the following CloudFormation template in your own AWS account. The template first builds the Flink application that is analyzing the incoming taxi trips, including the Flink Kinesis Connector that is required to read data from a Kinesis data stream, and then creates the infrastructure and submits the Flink application to KDA for Java.
 
-[![Launch CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=kinesis-analytics-taxi-consumer&templateURL=https://s3.amazonaws.com/aws-bigdata-blog/artifacts/kinesis-analytics-taxi-consumer/cfn-templates/kinesis-analytics-taxi-consumer.yml)
+[![Launch CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=kinesis-analytics-taxi-consumer&templateURL=https://s3.amazonaws.com/racheliurui.github.amazon-kinesis-analytics-taxi-consumer/cfn-templates/kinesis-analytics-taxi-consumer.yml)
 
 The entire process of building the application and creating the infrastructure takes about 15 minutes. Once the creation of the CloudFormation stack completes, the Flink application has been deployed to KDA for Java as a KDA for Java application and waits for events in the data stream to arrive. Checkpointing has been enabled so that the application can seamlessly recover from failures of the underlying infrastructure while KDA for Java will manage the checkpoints on your behalf. In addition, autoscaling has been configured so that KDA for Java automatically allocates or removes resources and scales the application, ie, adapts its parallelism, in response to changes of the incoming traffic.
 

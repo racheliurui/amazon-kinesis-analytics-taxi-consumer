@@ -165,7 +165,7 @@ Resources:
                   - s3:GetObject
                   - s3:GetObjectVersion
                   - s3:GetBucketVersioning
-              - Resource: 
+              - Resource:
                   - !Sub ${FlinkKinesisConnectorBuildProject.Arn}
                 Effect: Allow
                 Action:
@@ -189,7 +189,7 @@ Resources:
           PolicyDocument:
             Version: 2012-10-17
             Statement:
-              - Resource: 
+              - Resource:
                   - arn:aws:logs:*:*:log-group:/aws/codebuild/*
                   - arn:aws:logs:*:*:log-group:/aws/codebuild/*:log-stream:*
                 Effect: Allow
@@ -197,7 +197,7 @@ Resources:
                   - logs:CreateLogGroup
                   - logs:CreateLogStream
                   - logs:PutLogEvents
-              - Resource: 
+              - Resource:
                   - !Sub arn:aws:s3:::${ArtifactBucket}
                   - !Sub arn:aws:s3:::${ArtifactBucket}/*
                 Effect: Allow
@@ -239,7 +239,7 @@ Resources:
               - logs:CreateLogGroup
               - logs:CreateLogStream
               - logs:PutLogEvents
-          - Resource: 
+          - Resource:
               - !Sub arn:aws:s3:::${ArtifactBucket}
               - !Sub arn:aws:s3:::${ArtifactBucket}/*
             Effect: Allow
