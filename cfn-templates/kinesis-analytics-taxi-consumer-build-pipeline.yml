@@ -116,7 +116,7 @@ Resources:
     Properties:
       Count: 1
       Handle: !Ref BuildCompleteWaitHandle
-      Timeout: "900"
+      Timeout: "1200"
 
   BuildCompleteWaitHandle:
     Type: AWS::CloudFormation::WaitConditionHandle
