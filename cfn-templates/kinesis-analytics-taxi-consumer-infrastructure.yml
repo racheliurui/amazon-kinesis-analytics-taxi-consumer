@@ -52,7 +52,7 @@ Resources:
 
   KinesisAnalyticsFlinkApplication:
     Type: AWS::KinesisAnalyticsV2::Application
-    Properties: 
+    Properties:
       RuntimeEnvironment: FLINK-1_6
       ServiceExecutionRole: !Sub ${KinesisAnalyticsServiceRole.Arn}
       ApplicationConfiguration:
@@ -83,17 +83,17 @@ Resources:
     Type: "AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption"
     Properties:
       ApplicationName: !Sub ${KinesisAnalyticsFlinkApplication}
-      CloudWatchLoggingOption: 
+      CloudWatchLoggingOption:
         LogStreamARN: !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${FlinkLogGroup}:log-stream:${FlinkLogStream}
 
   FlinkLogGroup:
     Type: AWS::Logs::LogGroup
-    Properties: 
+    Properties:
       RetentionInDays: 7
 
   FlinkLogStream:
     Type: AWS::Logs::LogStream
-    Properties: 
+    Properties:
       LogGroupName: !Ref FlinkLogGroup
 
 
@@ -164,7 +164,7 @@ Resources:
     Type: AWS::CloudWatch::Dashboard
     Properties:
       DashboardName: !Sub ${AWS::StackName}-dashboard
-      DashboardBody: !Sub 
+      DashboardBody: !Sub
         - |
           {
               "widgets": [
@@ -320,7 +320,7 @@ Resources:
         Fn::Base64:
           !Sub |
             #!/bin/bash -x
-            
+
             yum update -y
             yum install -y tmux
 
@@ -340,7 +340,7 @@ Resources:
 
             # set default Kibana index pattern
             curl -s -w "\n" -XPOST 'https://${ElasticsearchService.DomainEndpoint}/_plugin/kibana/api/kibana/settings' -H 'content-type: application/json' -H 'kbn-xsrf: true' --data '{"changes":{"defaultIndex":"trip-duration-index-pattern"}}'
-            
+
             # start the Flink application
             aws --region ${AWS::Region} kinesisanalyticsv2 start-application --application-name ${KinesisAnalyticsFlinkApplication} --run-configuration '{ "ApplicationRestoreConfiguration": { "ApplicationRestoreType": "RESTORE_FROM_LATEST_SNAPSHOT" } }'
 
@@ -524,3 +524,5 @@ Mappings:
       HVM64: ami-0de53d8956e8dcf80
     us-east-2:
       HVM64: ami-02bcbb802e03574ba
+    ap-southeast-2:
+      HVM64: ami-0f767afb799f45102
